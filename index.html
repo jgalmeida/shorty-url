@@ -15,15 +15,29 @@
     </div>
 
     <script type="text/x-handlebars" data-template-name="application">
-      <div id="applicaiton">
-        {{#linkTo 'index'}}
-          Logout
-        {{/linkTo}}
+      {{#linkTo 'index'}}
+        Logout
+      {{/linkTo}}
 
-        <a href="" {{action login}}>Login</a>
+      <a href="" {{action login}}>Login</a>
 
-        {{outlet}}
-        {{render 'modal'}}
+      {{outlet}}
+      {{render 'modal'}}
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="mainLayout">
+      <div class="row">
+        <div class="col-md-2">
+          <ul>
+            <li><a href="">Menu1</a></li>
+            <li><a href="">Menu2</a></li>
+            <li><a href="">Menu3</a></li>
+            <li><a href="">Menu4</a></li>
+          </ul>
+        </div>
+        <div class="col-md-10">
+          {{outlet}}
+        </div>
       </div>
     </script>
 
@@ -46,10 +60,16 @@
           </div>
           <div class="modal-body">
             <fieldset>
-            <label>Email</label>
-            <input type="text" placeholder="Email"/> <br/>
-            <label>Password</label>
-            <input type="text" placeholder="Password"/>
+              <div class="form-group">
+                <label for="emailLogin">Email address</label>
+                {{view Ember.TextField type="email" valueBinding="email" id="emailLogin" placeholder="Enter email"
+                                       class="form-control" }}
+              </div>
+              <div class="form-group">
+                <label for="passwordLogin">Password</label>
+                {{view Ember.TextField type="password" valueBinding="password" id="passwordLogin" placeholder="Enter password"
+                                       class="form-control" }}
+              </div>
             </fieldset>
           </div>
           <div class="modal-footer">
@@ -62,14 +82,12 @@
 
     <!-- Handlebars -->
     <script type="text/x-handlebars" data-template-name="index">
-      <table>
+      <table class="table table-striped">
         <thead>
           <tr>
-            <th>
-              <a href="">Url</a>
-              <a href="">Clicks</a>
-              <a href="">When</a>
-            </th>
+            <th><a href="">Url</a></th>
+            <th><a href="">Clicks</a></th>
+            <th><a href="">When</a></th>
           </tr>
         </thead>
         <tbody>
@@ -93,38 +111,44 @@
     </script>
 
     <script type="text/x-handlebars" data-template-name="shorties">
-      <table>
-        <thead>
-          <tr>
-            <th>
-              <a href="">Url</a>
-              <a href="">Short url</a>
-              <a href="">Clicks</a>
-              <a href="">When</a>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {{#each model}}
-            <tr>
-              <td>
-                {{url}}
-              </td>
-              <td>
-                {{shortUrl}}
-              </td>
-              <td>
-                {{clicks}}
-              </td>
-              <td>
-                {{when}}
-              </td>
-            </tr>
-          {{else}}
-            <p>There are no shorties</p>
-          {{/each}}
-        </tbody>
-      </table>
+      <div class="row">
+        <div class="col-md-6">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th><a href="">Url</a></th>
+                <th><a href="">Short url</a></th>
+                <th><a href="">Clicks</a></th>
+                <th><a href="">When</a></th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each model}}
+                <tr>
+                  <td>
+                    {{url}}
+                  </td>
+                  <td>
+                    {{shortUrl}}
+                  </td>
+                  <td>
+                    {{clicks}}
+                  </td>
+                  <td>
+                    {{when}}
+                  </td>
+                </tr>
+              {{else}}
+                <p>There are no shorties</p>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+        <div class="col-md-4">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse rutrum dignissim dui. Nam tempor lorem a felis lacinia, id fringilla nisl adipiscing. Donec iaculis tortor nisl, vel consectetur diam imperdiet sit amet. In rutrum ante risus, ac pellentesque dui ultricies at. Donec ut hendrerit mauris, vitae ornare augue. Nam augue ante, auctor id turpis ac, tristique pretium neque. Vestibulum scelerisque felis sed lectus luctus interdum. Etiam metus eros, laoreet in ornare eu, cursus sit amet lectus. Donec erat magna, rhoncus quis tortor pellentesque, tincidunt commodo eros. Suspendisse at convallis eros. Curabitur tempor odio quis sem tincidunt, eu tempus libero porttitor.
+          </p>
+        </div>
+      </div>
     </script>
 
     <!-- Libs -->

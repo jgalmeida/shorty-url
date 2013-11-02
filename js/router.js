@@ -72,7 +72,8 @@ Shorty.ShortiesRoute = Ember.Route.extend({
   },
 
   renderTemplate: function () {
-    this.render('shorties')
+    this.render('mainLayout')
+    this.render('shorties', { into: 'mainLayout' })
   }
 });
 
