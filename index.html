@@ -11,25 +11,58 @@
   </head>
   <body>
 
-    <script type="text/x-handlebars" data-template-name="outside">
-      {{#linkTo 'shorties'}}
-        Login
-      {{/linkTo}}
+    <div id="shortyApp">
+    </div>
 
-      {{outlet}}
+    <script type="text/x-handlebars" data-template-name="application">
+      <div id="applicaiton">
+        {{#linkTo 'index'}}
+          Logout
+        {{/linkTo}}
+
+        <a href="" {{action login}}>Login</a>
+
+        {{outlet}}
+        {{render 'modal'}}
+      </div>
     </script>
 
-    <script type="text/x-handlebars" data-template-name="main">
-      {{#linkTo 'index'}}
-        Logout
-      {{/linkTo}}
+    <script type="text/x-handlebars" data-template-name="not_found">
+      <h1>Not found</h1>
+    </script>
 
-      {{outlet}}
+    <script type="text/x-handlebars" data-template-name="modal">
+      <div id="shortyModal" class="modal fade">
+        {{outlet modalBody}}
+      </div>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="login">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" {{action cancel}}>&times;</button>
+            <h4 class="modal-title">Please use your credentials to login</h4>
+          </div>
+          <div class="modal-body">
+            <fieldset>
+            <label>Email</label>
+            <input type="text" placeholder="Email"/> <br/>
+            <label>Password</label>
+            <input type="text" placeholder="Password"/>
+            </fieldset>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" {{action cancel}}>Close</button>
+            <button type="button" class="btn btn-primary" {{action login}}>Login</button>
+          </div>
+        </div>
+      </div>
     </script>
 
     <!-- Handlebars -->
     <script type="text/x-handlebars" data-template-name="index">
-      <table class="shortiesList">
+      <table>
         <thead>
           <tr>
             <th>
@@ -60,7 +93,7 @@
     </script>
 
     <script type="text/x-handlebars" data-template-name="shorties">
-      <table class="shortiesList">
+      <table>
         <thead>
           <tr>
             <th>
