@@ -23,83 +23,10 @@ shorties =
 Shorty.Router.map(function (){
   this.route('index', { path: '/' });
   this.route('not_found', { path: '/404' });
-  this.resource('shorties', { path: '/all' }, function () {
-    this.route('new', { path: '/add' });
+  this.resource('user_settings', { path: '/admin' }, function () {
+    this.route('edit_profile',   { path: '/edit/profile'  });
+    this.route('edit_password',  { path: '/edit/password' });
   });
+  this.route('shorties',   { path: '/all' });
+  this.route('shorty_new', { path: '/add' });
 });
-
-Shorty.ApplicationRoute = Ember.Route.extend({
-  actions: {
-    error: function (reason) {
-      if (reason.status == 404)
-        this.transitionTo('not_found')
-    },
-
-    closeModal: function () {
-      this.render('hide_modal', { into: 'modal', outlet: 'modalBody' });
-    },
-
-    login: function () {
-      Shorty.ApplicationRoute.showModal(this, 'login', null);
-    }
-  }
-});
-
-Shorty.ApplicationRoute.reopenClass({
-  showModal: function (router, name, model) {
-    router.render(name, { into: 'modal', outlet: 'modalBody' })
-    controller = router.controllerFor(name)
-
-    if (controller && model)
-      controller.set('model', model)
-  }
-});
-
-Shorty.IndexRoute = Ember.Route.extend({
-  model: function (){
-    return shorties;
-  },
-
-  renderTemplate: function () {
-    this.render('index')
-  }
-
-});
-
-Shorty.ShortiesRoute = Ember.Route.extend({
-  model: function () {
-    return shorties;
-  },
-
-  renderTemplate: function () {
-    this.render('mainLayout')
-    this.render('shorties', { into: 'mainLayout' })
-  }
-});
-
-
-Shorty.ModalBodyView = Ember.View.extend({
-  didInsertElement: function () {
-    $('#shortyModal').modal('show');
-  }
-});
-
-Shorty.HideModalView = Shorty.ModalBodyView.extend({
-  didInsertElement: function () {
-    $('#shortyModal').modal('hide');
-  }
-});
-
-Shorty.LoginView = Shorty.ModalBodyView.extend({
-  templateName: 'login'
-});
-
-
-
-
-
-
-
-
-
-
