@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Shorty Url</title>
+
+    <!-- Css -->
+    <link rel="stylesheet" href="css/application.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.css">
+  </head>
+  <body>
+
+    <script type="text/x-handlebars" data-template-name="outside">
+      {{#linkTo 'shorties'}}
+        Login
+      {{/linkTo}}
+
+      {{outlet}}
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="main">
+      {{#linkTo 'index'}}
+        Logout
+      {{/linkTo}}
+
+      {{outlet}}
+    </script>
+
+    <!-- Handlebars -->
+    <script type="text/x-handlebars" data-template-name="index">
+      <table class="shortiesList">
+        <thead>
+          <tr>
+            <th>
+              <a href="">Url</a>
+              <a href="">Clicks</a>
+              <a href="">When</a>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each model}}
+            <tr>
+              <td>
+                {{shortUrl}}
+              </td>
+              <td>
+                {{clicks}}
+              </td>
+              <td>
+                {{when}}
+              </td>
+            </tr>
+          {{else}}
+            <p>There are no shorties</p>
+          {{/each}}
+        </tbody>
+      </table>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="shorties">
+      <table class="shortiesList">
+        <thead>
+          <tr>
+            <th>
+              <a href="">Url</a>
+              <a href="">Short url</a>
+              <a href="">Clicks</a>
+              <a href="">When</a>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each model}}
+            <tr>
+              <td>
+                {{url}}
+              </td>
+              <td>
+                {{shortUrl}}
+              </td>
+              <td>
+                {{clicks}}
+              </td>
+              <td>
+                {{when}}
+              </td>
+            </tr>
+          {{else}}
+            <p>There are no shorties</p>
+          {{/each}}
+        </tbody>
+      </table>
+    </script>
+
+    <!-- Libs -->
+    <script src="js/jquery.js"></script>
+    <script src="js/handlebars.js"></script>
+    <script src="js/ember.js"></script>
+    <script src="js/ember-data.js"></script>
+    <script src="js/bootstrap.js"></script>
+
+    <!-- Application sources -->
+    <script src="js/application.js"></script>
+    <script src="js/router.js"></script>
+  </body>
+</html>
