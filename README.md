@@ -1,4 +1,22 @@
-shorty-url
+Shorty-url
 ==========
 
-Url shorter
+Url shorter application experiment.
+
+Version
+----
+
+Tech
+-----------
+
+* [Ember.js] - ????
+* [jQuery] - ????
+* [Twitter Bootstrap] - ????
+* [????] - ????
+
+Installation
+--------------
+
+```sh
+????
+```
